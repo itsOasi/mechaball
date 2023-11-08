@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy5voafb0kwmq"]
+
+[ext_resource type="PackedScene" uid="uid://6uy1dog3gc7q" path="res://objects/env/plaftorm.glb" id="1_1o4vl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mhqu0"]
+
+[node name="plaftorm" instance=ExtResource("1_1o4vl")]
+
+[node name="CollisionShape3D" parent="platform/StaticBody3D" index="0"]
+transform = Transform3D(2.00361, 0, 0, 0, 2.00361, 0, 0, 0, 2.00361, 0, 0, 0)
+shape = SubResource("BoxShape3D_mhqu0")

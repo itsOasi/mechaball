@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://btifvcr6nehds"]
+
+[ext_resource type="Script" path="res://script/buttons.gd" id="1"]
+
+[node name="menu" type="HBoxContainer"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 2
+script = ExtResource("1")

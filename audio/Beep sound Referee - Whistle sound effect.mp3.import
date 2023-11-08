@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b6gt02ofy1rk8"
+path="res://.godot/imported/Beep sound Referee - Whistle sound effect.mp3-a804ecc1a77ad329ce2a4a3a03c23cf9.mp3str"
+
+[deps]
+
+source_file="res://audio/Beep sound Referee - Whistle sound effect.mp3"
+dest_files=["res://.godot/imported/Beep sound Referee - Whistle sound effect.mp3-a804ecc1a77ad329ce2a4a3a03c23cf9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

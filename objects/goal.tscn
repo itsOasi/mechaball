@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://dh6arn6e0u6g"]
+
+[ext_resource type="PackedScene" uid="uid://cpsle4w53pta1" path="res://objects/env/goal.glb" id="1_uycyp"]
+[ext_resource type="Script" path="res://objects/goal.gd" id="2_yl84r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qvtw4"]
+size = Vector3(5.25997, 3.57132, 0.0369391)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_id1cx"]
+size = Vector3(0.645226, 4.11249, 0.85464)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1iyxr"]
+size = Vector3(0.645226, 1.56341, 0.85464)
+
+[node name="goal" instance=ExtResource("1_uycyp")]
+script = ExtResource("2_yl84r")
+
+[node name="Area3D" type="Area3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+shape = SubResource("BoxShape3D_qvtw4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.40652, 0, 0)
+shape = SubResource("BoxShape3D_id1cx")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.407, 0, 0)
+shape = SubResource("BoxShape3D_id1cx")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(0.767165, 0.64145, 0, -0.64145, 0.767165, 0, 0, 0, 1, -2.99982, 2.25218, 0)
+shape = SubResource("BoxShape3D_1iyxr")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(-0.767165, -0.64145, 0, 0.64145, -0.767165, 0, 0, 0, 1, 3, -2.373, 0)
+shape = SubResource("BoxShape3D_1iyxr")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" index="4"]
+transform = Transform3D(0.767165, 0.64145, -8.74228e-08, 0.64145, -0.767165, 0, -6.70677e-08, -5.60773e-08, -1, -3, -2.373, 0)
+shape = SubResource("BoxShape3D_1iyxr")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="5"]
+transform = Transform3D(-0.767165, -0.64145, -8.74228e-08, -0.64145, 0.767165, 0, 6.70677e-08, 5.60773e-08, -1, 3.08928, 2.25218, 0)
+shape = SubResource("BoxShape3D_1iyxr")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

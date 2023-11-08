@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://uuv028qjphmk"]
+
+[ext_resource type="Script" path="res://script/game.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://drlxrb1pn7xuy" path="res://meta/igui.tscn" id="3"]
+[ext_resource type="AudioStream" uid="uid://dfvwyhww750jg" path="res://audio/goooooaaaaallllll.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://gxilc7wfs64o" path="res://audio/25.wav" id="5"]
+[ext_resource type="PackedScene" uid="uid://ccqpoplgmk8d5" path="res://scenes/test/testStadium.tscn" id="6"]
+
+[sub_resource type="BoxMesh" id="3"]
+
+[sub_resource type="ConvexPolygonShape3D" id="5"]
+points = PackedVector3Array(-1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1)
+
+[node name="MainScene" type="Node3D"]
+script = ExtResource("1")
+
+[node name="DirectionalLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.933016, 0.197452, -0.300821, 0, 0.835999, 0.548731, 0.359834, 0.511975, -0.780001, -6, 5, 3)
+
+[node name="goalBoxes" type="Node3D" parent="."]
+
+[node name="goal 1" type="Area3D" parent="goalBoxes"]
+transform = Transform3D(9.5, 0, 0, 0, 7, 0, 0, 0, 1, 0, 1, -45)
+
+[node name="MeshInstance" type="MeshInstance3D" parent="goalBoxes/goal 1"]
+mesh = SubResource("3")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="goalBoxes/goal 1"]
+shape = SubResource("5")
+
+[node name="goal 2" type="Area3D" parent="goalBoxes"]
+transform = Transform3D(9.5, 0, 0, 0, 7, 0, 0, 0, 1, 0, 1, 45)
+
+[node name="MeshInstance2" type="MeshInstance3D" parent="goalBoxes/goal 2"]
+mesh = SubResource("3")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="goalBoxes/goal 2"]
+shape = SubResource("5")
+
+[node name="igui" parent="." instance=ExtResource("3")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="goalSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4")
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5")
+volume_db = -9.649
+autoplay = true
+mix_target = 1
+
+[node name="spawns" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="p1spwn" type="Marker3D" parent="spawns"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 5)
+
+[node name="ballspwn" type="Marker3D" parent="spawns"]
+
+[node name="p2spwn" type="Marker3D" parent="spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="stadium" parent="." instance=ExtResource("6")]
+
+[connection signal="body_entered" from="goalBoxes/goal 1" to="." method="_on_goal_1_body_entered"]
+[connection signal="body_entered" from="goalBoxes/goal 2" to="." method="_on_goal_2_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="finished" from="goalSound" to="." method="_on_goalSound_finished"]
+[connection signal="finished" from="bgm" to="." method="_on_bgm_finished"]

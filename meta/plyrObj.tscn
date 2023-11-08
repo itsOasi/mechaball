@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3kyevaeyy5c3"]
+
+[ext_resource type="Script" path="res://script/plyrObj.gd" id="1"]
+
+[node name="plyrObj" type="Node3D"]
+script = ExtResource("1")
+xp = 27000
+money = 260500
+spd = 20
+strgth = 250
+jmpstr = 15
+sens = 5

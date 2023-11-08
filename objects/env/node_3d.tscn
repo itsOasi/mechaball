@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt1s77cme117n"]
+
+[ext_resource type="ArrayMesh" uid="uid://cnpqnh4cx405e" path="res://objects/env/12117/Super Training Stadium/Super Training Stage.obj" id="1_rdwpv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vcwcp"]
+resource_name = "spa_sky00.png"
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+metallic = 0.5
+
+[node name="Node3D" type="Node3D"]
+
+[node name="SuperTrainingStage" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_rdwpv")
+surface_material_override/0 = SubResource("StandardMaterial3D_vcwcp")

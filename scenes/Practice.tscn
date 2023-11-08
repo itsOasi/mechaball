@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://uss1ho7fmqe6"]
+
+[ext_resource type="Script" path="res://script/game.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dh6arn6e0u6g" path="res://objects/goal.tscn" id="2_mptvk"]
+[ext_resource type="AudioStream" uid="uid://dfvwyhww750jg" path="res://audio/goooooaaaaallllll.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://gxilc7wfs64o" path="res://audio/25.wav" id="5"]
+[ext_resource type="PackedScene" uid="uid://ccqpoplgmk8d5" path="res://scenes/test/testStadium.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://c5q0gsa2lfry2" path="res://objects/admin_cam.tscn" id="6_o1xtj"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_lu3x8"]
+
+[node name="MainScene" type="Node3D"]
+script = ExtResource("1")
+practice = true
+bestof = -1
+
+[node name="goalBoxes" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20.6264, 0)
+
+[node name="goal1" parent="goalBoxes" instance=ExtResource("2_mptvk")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35.3094, -84.4183)
+
+[node name="goal2" parent="goalBoxes" instance=ExtResource("2_mptvk")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35.309, 84.418)
+
+[node name="goalSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4")
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5")
+volume_db = -9.649
+autoplay = true
+mix_target = 1
+
+[node name="spawns" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.84879, 0)
+
+[node name="p1spwn" type="Marker3D" parent="spawns"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 18.845)
+
+[node name="ballspwn" type="Marker3D" parent="spawns"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.6829, 0)
+
+[node name="p2spwn" type="Marker3D" parent="spawns"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.053)
+
+[node name="Admin_cam" parent="." instance=ExtResource("6_o1xtj")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.2076, 70.8957)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.245358, 0.969432, 0, -0.969432, 0.245358, 0, 53.4186, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+unique_name_in_owner = true
+navigation_mesh = SubResource("NavigationMesh_lu3x8")
+
+[node name="stadium" parent="NavigationRegion3D" instance=ExtResource("6")]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="NavigationRegion3D"]
+
+[connection signal="scored" from="goalBoxes/goal1" to="." method="_on_goal_1_scored"]
+[connection signal="scored" from="goalBoxes/goal2" to="." method="_on_goal_2_scored"]
+[connection signal="finished" from="goalSound" to="." method="_on_goalSound_finished"]
+[connection signal="finished" from="bgm" to="." method="_on_bgm_finished"]

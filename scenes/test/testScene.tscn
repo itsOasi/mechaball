@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://6jkht0d7lfrs"]
+
+[ext_resource type="Script" path="res://script/game.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://ccqpoplgmk8d5" path="res://scenes/test/testStadium.tscn" id="3"]
+[ext_resource type="AudioStream" uid="uid://dfvwyhww750jg" path="res://audio/goooooaaaaallllll.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://gxilc7wfs64o" path="res://audio/25.wav" id="5"]
+
+[sub_resource type="BoxMesh" id="3"]
+
+[sub_resource type="ConvexPolygonShape3D" id="5"]
+points = PackedVector3Array(-1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1)
+
+[sub_resource type="Environment" id="Environment_lg35i"]
+ambient_light_color = Color(0.580392, 0.607843, 0.780392, 1)
+
+[node name="MainScene" type="Node3D"]
+script = ExtResource("1")
+practice = true
+
+[node name="stadium" parent="." instance=ExtResource("3")]
+
+[node name="goals" type="Node3D" parent="."]
+
+[node name="goal 1" type="Area3D" parent="goals"]
+transform = Transform3D(9.5, 0, 0, 0, 7, 0, 0, 0, 1, 0, 1, -45)
+
+[node name="MeshInstance" type="MeshInstance3D" parent="goals/goal 1"]
+mesh = SubResource("3")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="goals/goal 1"]
+shape = SubResource("5")
+
+[node name="goal 2" type="Area3D" parent="goals"]
+transform = Transform3D(9.5, 0, 0, 0, 7, 0, 0, 0, 1, 0, 1, 45)
+
+[node name="MeshInstance2" type="MeshInstance3D" parent="goals/goal 2"]
+mesh = SubResource("3")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="goals/goal 2"]
+shape = SubResource("5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 180.0
+one_shot = true
+autostart = true
+
+[node name="goalSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4")
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5")
+volume_db = -9.649
+autoplay = true
+mix_target = 1
+
+[node name="spawns" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="p1spwn" type="Marker3D" parent="spawns"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 3)
+
+[node name="ballspwn" type="Marker3D" parent="spawns"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="p2spwn" type="Marker3D" parent="spawns"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lg35i")
+
+[connection signal="body_entered" from="goals/goal 1" to="." method="_on_goal_1_body_entered"]
+[connection signal="body_entered" from="goals/goal 2" to="." method="_on_goal_2_body_entered"]
+[connection signal="finished" from="goalSound" to="." method="_on_goalSound_finished"]
+[connection signal="finished" from="bgm" to="." method="_on_bgm_finished"]

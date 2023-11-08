@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://be1yrde5b2fhl"]
+
+[ext_resource type="Texture2D" uid="uid://6vve3an7bjjg" path="res://textures/placeholder.png" id="2"]
+[ext_resource type="PackedScene" path="res://objects/Label.tscn" id="3"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(100, 0)
+anchors_preset = -1
+anchor_right = 0.149
+anchor_bottom = 0.243
+offset_right = -2.64801
+offset_bottom = 0.535995
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" parent="." instance=ExtResource("3")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -25.0
+offset_right = -2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Text"
+uppercase = true

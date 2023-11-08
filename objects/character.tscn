@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxgnotex5wwt3"]
+
+[ext_resource type="Script" path="res://objects/character.gd" id="1_6s6d8"]
+
+[sub_resource type="StandardMaterial3D" id="1"]
+transparency = 2
+alpha_scissor_threshold = 0.16
+alpha_antialiasing_mode = 0
+blend_mode = 1
+albedo_color = Color(1, 1, 1, 0.168627)
+
+[sub_resource type="SphereMesh" id="2"]
+material = SubResource("1")
+
+[sub_resource type="SphereShape3D" id="3"]
+radius = 0.931715
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pukpr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1f3jj"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_6s6d8")
+stam = 100.0
+regen = 5
+too_high = 5.0
+look_limits = Vector2(35, 35)
+
+[node name="Range" type="Area3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="MeshInstance" type="MeshInstance3D" parent="Range"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+visible = false
+mesh = SubResource("2")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Range"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_pukpr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_1f3jj")
+
+[node name="head" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+
+[node name="Camera" type="Camera3D" parent="head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 3.61018e-08, 7.80243e-09, -3.61018e-08, 0.910751, 0.412957, 7.80242e-09, -0.412957, 0.910751, -4.38366e-07, 3.43574, 5.01433)
+
+[node name="normal" type="Marker3D" parent="head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 3.39958e-08, 6.8807e-09, -3.45694e-08, 0.993048, 0.117711, -2.83118e-09, -0.117711, 0.993048, -0.0183869, 2.01353, 3.28453)
+
+[node name="shooting" type="Marker3D" parent="head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.951467, 0.504515, 1.62913)
+
+[node name="Foot" type="Area3D" parent="head"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91711e-07, 0.178916, -2.19292)
+
+[node name="MeshInstance" type="MeshInstance3D" parent="head/Foot"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+visible = false
+mesh = SubResource("2")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="head/Foot"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.589077, -0.493539)
+shape = SubResource("3")
+
+[node name="RayCast3D" type="RayCast3D" parent="head/Foot"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -100)
+collide_with_areas = true
+
+[node name="Timer" type="Timer" parent="head/Foot"]
+unique_name_in_owner = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+unique_name_in_owner = true
+
+[connection signal="body_exited" from="Range" to="." method="_on_Range_body_exited"]
+[connection signal="body_entered" from="head/Foot" to="." method="_on_Foot_body_entered"]

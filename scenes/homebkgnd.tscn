@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5yinge0hdoea"]
+
+[ext_resource type="Texture2D" uid="uid://drph8gion5ehw" path="res://textures/action-ball-field-274506.jpg" id="1"]
+
+[node name="action-ball-field-274506" type="TextureRect"]
+texture = ExtResource("1")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://myc611ksrbo2"]
+
+[ext_resource type="Script" path="res://scenes/LineEdit.gd" id="1_4c561"]
+
+[node name="LineEdit" type="LineEdit"]
+placeholder_text = "Your Name Here"
+caret_blink = true
+script = ExtResource("1_4c561")
+menu = true
+
+[connection signal="text_changed" from="." to="." method="_on_text_changed"]
