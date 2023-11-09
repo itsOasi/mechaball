@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bowsgaf6auxxi"]
+
+[ext_resource type="Script" path="res://script/admin_cam.gd" id="1_us6t2"]
+[ext_resource type="Environment" uid="uid://nfcm85h4pn15" path="res://objects/env/world_environment.tres" id="2_g16dd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gpgqw"]
+radius = 1.0
+
+[node name="Admin_cam" type="CharacterBody3D"]
+script = ExtResource("1_us6t2")
+rot_speed = 300
+look_limits = Vector2(45, 45)
+
+[node name="Camera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0)
+environment = ExtResource("2_g16dd")
+
+[node name="RayCast3D" type="ShapeCast3D" parent="Camera"]
+shape = SubResource("SphereShape3D_gpgqw")
+target_position = Vector3(0, 0, -100)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://pjj44acll265"]
+[gd_scene load_steps=8 format=3 uid="uid://pjj44acll265"]
 
 [ext_resource type="Script" path="res://script/menu.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://b5yinge0hdoea" path="res://scenes/homebkgnd.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://c3inqrq85vhbb" path="res://scenes/hangar.tscn" id="5_u6yky"]
 [ext_resource type="PackedScene" uid="uid://j2ny4o34p6vf" path="res://objects/Label.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://cwdsinevj5uow" path="res://scenes/settings.tscn" id="7_p6cds"]
 [ext_resource type="PackedScene" uid="uid://dyq8148icr2ms" path="res://scenes/ChooseMatch.tscn" id="7_rrfrh"]
@@ -24,66 +25,73 @@ texture = null
 layout_mode = 0
 color = Color(0, 0, 0, 0.392157)
 
-[node name="top_nav" type="HBoxContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 35.0
+grow_horizontal = 2
+
+[node name="top_nav" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 31.0
 grow_horizontal = 2
 
-[node name="info" type="HBoxContainer" parent="top_nav"]
+[node name="info" type="HBoxContainer" parent="Panel/top_nav"]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="top_nav/info"]
+[node name="Label" type="Label" parent="Panel/top_nav/info"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "XP"
 
-[node name="Label2" type="Label" parent="top_nav/info"]
+[node name="Label2" type="Label" parent="Panel/top_nav/info"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "$"
 
-[node name="Label3" type="Label" parent="top_nav/info"]
+[node name="Label3" type="Label" parent="Panel/top_nav/info"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "ID"
 
-[node name="Control" type="Control" parent="top_nav"]
+[node name="Control" type="Control" parent="Panel/top_nav"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Screens" type="HBoxContainer" parent="top_nav"]
+[node name="Screens" type="HBoxContainer" parent="Panel/top_nav"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Hangar" type="Button" parent="top_nav/Screens"]
+[node name="Hangar" type="Button" parent="Panel/top_nav/Screens"]
 layout_mode = 2
 text = "Hangar"
 flat = true
 
-[node name="Home" type="Button" parent="top_nav/Screens"]
+[node name="Home" type="Button" parent="Panel/top_nav/Screens"]
 layout_mode = 2
 text = "Start"
 flat = true
 
-[node name="Market" type="Button" parent="top_nav/Screens"]
+[node name="Market" type="Button" parent="Panel/top_nav/Screens"]
 layout_mode = 2
 text = "Store"
 flat = true
 
-[node name="Control2" type="Control" parent="top_nav"]
+[node name="Control2" type="Control" parent="Panel/top_nav"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Settings" type="Button" parent="top_nav"]
+[node name="Settings" type="Button" parent="Panel/top_nav"]
 layout_mode = 2
 text = "Settings"
 flat = true
 
-[node name="Quit" type="Button" parent="top_nav"]
+[node name="Quit" type="Button" parent="Panel/top_nav"]
 layout_mode = 2
 text = "Quit"
 flat = true
@@ -111,11 +119,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Hangar" type="Control" parent="main"]
-unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Hangar" parent="main" instance=ExtResource("5_u6yky")]
 
 [node name="Home" parent="main" instance=ExtResource("7_rrfrh")]
 unique_name_in_owner = true
@@ -125,7 +129,7 @@ layout_mode = 1
 unique_name_in_owner = true
 layout_mode = 1
 
-[connection signal="pressed" from="top_nav/Screens/Hangar" to="." method="_on_hangar_pressed"]
-[connection signal="pressed" from="top_nav/Screens/Home" to="." method="_on_home_pressed"]
-[connection signal="pressed" from="top_nav/Settings" to="." method="_on_settings_pressed"]
-[connection signal="button_down" from="top_nav/Quit" to="." method="_on_Quit_button_down"]
+[connection signal="pressed" from="Panel/top_nav/Screens/Hangar" to="." method="_on_hangar_pressed"]
+[connection signal="pressed" from="Panel/top_nav/Screens/Home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="Panel/top_nav/Settings" to="." method="_on_settings_pressed"]
+[connection signal="button_down" from="Panel/top_nav/Quit" to="." method="_on_Quit_button_down"]

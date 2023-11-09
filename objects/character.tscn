@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxgnotex5wwt3"]
+[gd_scene load_steps=8 format=3 uid="uid://dprofd6splp5l"]
 
-[ext_resource type="Script" path="res://objects/character.gd" id="1_6s6d8"]
+[ext_resource type="Script" path="res://script/character.gd" id="1_rglp2"]
+[ext_resource type="Environment" uid="uid://nfcm85h4pn15" path="res://objects/env/world_environment.tres" id="2_nyh2e"]
 
 [sub_resource type="StandardMaterial3D" id="1"]
 transparency = 2
@@ -19,12 +20,25 @@ radius = 0.931715
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1f3jj"]
 
-[node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_6s6d8")
+[node name="robot" type="CharacterBody3D"]
+script = ExtResource("1_rglp2")
+SPEED = null
+JUMP_VELOCITY = null
+ID = null
+strgth = null
+hp = null
 stam = 100.0
 regen = 5
+sens = null
+move_dir = null
+direction = null
+is_player = null
 too_high = 5.0
+kickOk = null
+attackOk = null
+gameOk = null
 look_limits = Vector2(35, 35)
+look = null
 
 [node name="Range" type="Area3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
@@ -53,6 +67,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 [node name="Camera" type="Camera3D" parent="head"]
 unique_name_in_owner = true
 transform = Transform3D(1, 3.61018e-08, 7.80243e-09, -3.61018e-08, 0.910751, 0.412957, 7.80242e-09, -0.412957, 0.910751, -4.38366e-07, 3.43574, 5.01433)
+environment = ExtResource("2_nyh2e")
 
 [node name="normal" type="Marker3D" parent="head"]
 unique_name_in_owner = true

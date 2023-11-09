@@ -6,6 +6,7 @@ func _ready():
 	%bgm.play()
 	igui.hideMenus()
 	close_menus()
+	%main/Hangar.show()
 	
 func _process(delta):
 	%info/Label.text = "XP: " + str(plyrObj.xp)

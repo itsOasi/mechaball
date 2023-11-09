@@ -46,8 +46,8 @@ func _input(event):
 			curr_char.look.y -=  event.relative.x * .1 * sens
 			curr_char.look.x -=  event.relative.y * -.1 * sens
 		elif admin_cam:
-			admin_cam.look_dir.y -=  event.relative.x * .004
-			admin_cam.look_dir.x -=  event.relative.y * -.004
+			admin_cam.look_dir.y -=  event.relative.x * .04
+			admin_cam.look_dir.x -=  event.relative.y * -.04
 
 func _physics_process(delta):
 	if curr_char and curr_char.is_player:
@@ -57,9 +57,9 @@ func _physics_process(delta):
 
 func _process(delta):
 	if curr_char:
+		admin_cam.controlling_character = curr_char.is_player
 		if Input.is_action_just_pressed("control"):
 			curr_char.is_player = !curr_char.is_player
-			admin_cam.controlling_character = curr_char.is_player
 
 func admin_logic(delta):
 	var lift = 0
@@ -81,18 +81,25 @@ func char_logic(delta):
 		curr_char.look = Input.get_vector("look_up", "look_down", "look_right", "look_left") * sens
 	curr_char.direction = (curr_char.transform.basis * Vector3(curr_char.move_dir.x, 0, curr_char.move_dir.y)).normalized()
 	
+	if Input.is_action_pressed("left_trigger"):
+			curr_char.plyr_aim()
+	
+	if Input.is_action_just_released("left_trigger"): 
+			curr_char.exit_aim()
+
 	if curr_char.kickOk:
-		if Input.is_action_pressed("right_trigger"):
+		if Input.is_action_pressed("right_bumper"):
 			curr_char.dribble(delta)
 			
 		if Input.is_action_just_released("right_trigger"):
 			curr_char.release()
-			
-		if Input.is_action_just_released("left_trigger"): 
 			curr_char.kick()
+	else:
+		if Input.is_action_just_released("right_trigger"):
+			curr_char.attack()
+
 		
-		if Input.is_action_pressed("left_trigger"):
-			curr_char.plyr_aim()
+		
 			
 		if Input.is_action_pressed("back"):
 			curr_char.hold()

@@ -1,0 +1,23 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://nfcm85h4pn15"]
+
+[ext_resource type="Texture2D" uid="uid://btwfplt5m6cpp" path="res://textures/1329016.png" id="1_80u7c"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_nnk4y"]
+panorama = ExtResource("1_80u7c")
+
+[sub_resource type="Sky" id="Sky_krsee"]
+sky_material = SubResource("PanoramaSkyMaterial_nnk4y")
+
+[resource]
+background_mode = 2
+background_intensity = 1.0
+sky = SubResource("Sky_krsee")
+ambient_light_source = 3
+ambient_light_energy = 7.5
+reflected_light_source = 2
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_bounce_feedback = 1.99
+sdfgi_energy = 5.0
+glow_enabled = true

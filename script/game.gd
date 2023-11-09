@@ -22,7 +22,7 @@ var madeGoal
 
 func _ready():
 	%NavigationRegion3D.bake_navigation_mesh()
-	igui.connect("_on_button_pressed", _on_igui_reset)
+	igui.connect("reset", _on_igui_reset)
 	igui.hideMenus()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
@@ -77,6 +77,7 @@ func resetScene():
 	ball.hold()
 	
 	p1.clear_characters()
+	p1.curr_char = null
 	p1.ball = ball
 	p1.goal = %goalBoxes/goal1
 	p1.spawn_character(%spawns/p1spwn.position, %spawns/p1spwn.rotation_degrees.y)

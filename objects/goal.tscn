@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh6arn6e0u6g"]
+[gd_scene load_steps=6 format=3 uid="uid://dbbclpx18c21s"]
 
 [ext_resource type="PackedScene" uid="uid://cpsle4w53pta1" path="res://objects/env/goal.glb" id="1_uycyp"]
-[ext_resource type="Script" path="res://objects/goal.gd" id="2_yl84r"]
+[ext_resource type="Script" path="res://script/goal.gd" id="2_40xc7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qvtw4"]
 size = Vector3(5.25997, 3.57132, 0.0369391)
@@ -13,7 +13,7 @@ size = Vector3(0.645226, 4.11249, 0.85464)
 size = Vector3(0.645226, 1.56341, 0.85464)
 
 [node name="goal" instance=ExtResource("1_uycyp")]
-script = ExtResource("2_yl84r")
+script = ExtResource("2_40xc7")
 
 [node name="Area3D" type="Area3D" parent="." index="1"]
 

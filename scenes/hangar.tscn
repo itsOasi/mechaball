@@ -1,0 +1,76 @@
+[gd_scene load_steps=17 format=3 uid="uid://c3inqrq85vhbb"]
+
+[ext_resource type="ArrayMesh" uid="uid://c206h4dudvtub" path="res://objects/env/garageobj.obj" id="1_k8gss"]
+[ext_resource type="Environment" uid="uid://nfcm85h4pn15" path="res://objects/env/world_environment.tres" id="1_o2uwh"]
+[ext_resource type="Texture2D" uid="uid://01p48hmmvv0x" path="res://textures/garage/wall_wall1_BaseColor.png" id="2_74mfx"]
+[ext_resource type="Texture2D" uid="uid://bw226jq1e3ss8" path="res://textures/garage/suport_supp_BaseColor.png" id="3_fpqi0"]
+[ext_resource type="Texture2D" uid="uid://bvc6t6o1icc0c" path="res://textures/download.jpg" id="4_556kc"]
+[ext_resource type="Texture2D" uid="uid://d0eu6w6ehbkjy" path="res://textures/garage/lamp_Lamp_BaseColor.png" id="4_sfjsb"]
+[ext_resource type="Texture2D" uid="uid://dt7afdac2a7mv" path="res://textures/garage/topbars_Top_BaseColor.png" id="5_3cutc"]
+[ext_resource type="Texture2D" uid="uid://bmwh3oex5ec23" path="res://textures/garage/lamp_Lamp_Emissive.png" id="5_iid5v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_twq4b"]
+albedo_texture = ExtResource("2_74mfx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6g2i5"]
+albedo_texture = ExtResource("2_74mfx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pr7vv"]
+albedo_texture = ExtResource("3_fpqi0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m3mg1"]
+albedo_texture = ExtResource("5_3cutc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13sqv"]
+albedo_texture = ExtResource("4_sfjsb")
+emission = Color(0.909804, 0.909804, 0.909804, 1)
+emission_energy_multiplier = 8.91
+emission_texture = ExtResource("5_iid5v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_my2xc"]
+albedo_texture = ExtResource("4_556kc")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_phdhe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ky4e"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 16.0
+
+[node name="Hangar" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1.19249e-08, -0.104528, -0.994522, 0, 0.994522, -0.104528, 1, 1.24649e-09, 1.18596e-08, -1.109, 0, 7.942)
+environment = ExtResource("1_o2uwh")
+
+[node name="Garageobj" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_k8gss")
+surface_material_override/19 = SubResource("StandardMaterial3D_twq4b")
+surface_material_override/20 = SubResource("StandardMaterial3D_6g2i5")
+surface_material_override/22 = SubResource("StandardMaterial3D_pr7vv")
+surface_material_override/23 = SubResource("StandardMaterial3D_m3mg1")
+surface_material_override/24 = SubResource("StandardMaterial3D_13sqv")
+surface_material_override/25 = SubResource("StandardMaterial3D_my2xc")
+
+[node name="OmniLight3D" type="SpotLight3D" parent="Garageobj"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.75554, 3.77421, 5.14627)
+spot_range = 4096.0
+spot_attenuation = 0.34151
+spot_angle_attenuation = 0.406126
+
+[node name="OmniLight3D2" type="SpotLight3D" parent="Garageobj"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 5.75554, 3.77421, 10.838)
+spot_range = 4096.0
+spot_attenuation = 0.34151
+spot_angle_attenuation = 0.406126
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Garageobj"]
+transform = Transform3D(0.57, 0, 0, 0, -2.49155e-08, -0.184, 0, 0.57, -8.0429e-09, 5.74, 3.93955, 5.097)
+mesh = SubResource("CapsuleMesh_phdhe")
+surface_material_override/0 = SubResource("StandardMaterial3D_8ky4e")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Garageobj"]
+transform = Transform3D(0.57, 0, 0, 0, -2.49155e-08, -0.184, 0, 0.57, -8.0429e-09, 5.74, 3.93955, 10.9126)
+mesh = SubResource("CapsuleMesh_phdhe")
+surface_material_override/0 = SubResource("StandardMaterial3D_8ky4e")

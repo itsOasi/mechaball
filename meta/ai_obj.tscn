@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfb3p1hwnpy07"]
+
+[ext_resource type="Script" path="res://script/aiObj.gd" id="1_lpvsi"]
+
+[node name="AIObj" type="Node3D"]
+script = ExtResource("1_lpvsi")
+spd = 10
+strgth = 200
+jmpstr = 15
+sens = 3

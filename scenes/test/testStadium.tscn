@@ -1,24 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccqpoplgmk8d5"]
+[gd_scene load_steps=5 format=3 uid="uid://ccqpoplgmk8d5"]
 
 [ext_resource type="PackedScene" uid="uid://ki1if1oxc55g" path="res://objects/ground.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://ceos7u5k301oc" path="res://objects/invisibleWalls.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://cy5voafb0kwmq" path="res://objects/plaftorm.tscn" id="2_m0m73"]
-[ext_resource type="Texture2D" uid="uid://btwfplt5m6cpp" path="res://textures/1329016.png" id="4_uj4e5"]
 [ext_resource type="PackedScene" uid="uid://bt1s77cme117n" path="res://objects/env/node_3d.tscn" id="5_kv4vw"]
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_a2m3p"]
-panorama = ExtResource("4_uj4e5")
-
-[sub_resource type="Sky" id="Sky_qlcgl"]
-sky_material = SubResource("PanoramaSkyMaterial_a2m3p")
-
-[sub_resource type="Environment" id="Environment_3oty0"]
-background_mode = 2
-background_intensity = 1.0
-sky = SubResource("Sky_qlcgl")
-ambient_light_source = 3
-ambient_light_energy = 7.5
-reflected_light_source = 2
 
 [node name="stadium" type="Node3D"]
 
@@ -42,9 +27,6 @@ transform = Transform3D(50, 0, 0, 0, 20, 0, 0, 0, 2, 0, 9, -50)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.7741, 0)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_3oty0")
 
 [node name="Node3D" parent="." instance=ExtResource("5_kv4vw")]
 transform = Transform3D(14.229, 0, 0, 0, 14.229, 0, 0, 0, 14.229, 0, 0, 0)

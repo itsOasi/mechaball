@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://uss1ho7fmqe6"]
+[gd_scene load_steps=8 format=3 uid="uid://b01eqkwwrw6i7"]
 
 [ext_resource type="Script" path="res://script/game.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://dh6arn6e0u6g" path="res://objects/goal.tscn" id="2_mptvk"]
+[ext_resource type="PackedScene" uid="uid://dbbclpx18c21s" path="res://objects/goal.tscn" id="2_mptvk"]
 [ext_resource type="AudioStream" uid="uid://dfvwyhww750jg" path="res://audio/goooooaaaaallllll.wav" id="4"]
 [ext_resource type="AudioStream" uid="uid://gxilc7wfs64o" path="res://audio/25.wav" id="5"]
+[ext_resource type="PackedScene" uid="uid://bowsgaf6auxxi" path="res://meta/admin_cam.tscn" id="5_avrvp"]
 [ext_resource type="PackedScene" uid="uid://ccqpoplgmk8d5" path="res://scenes/test/testStadium.tscn" id="6"]
-[ext_resource type="PackedScene" uid="uid://c5q0gsa2lfry2" path="res://objects/admin_cam.tscn" id="6_o1xtj"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_lu3x8"]
 
@@ -53,12 +53,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.6829, 0)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.053)
 
-[node name="Admin_cam" parent="." instance=ExtResource("6_o1xtj")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.2076, 70.8957)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.245358, 0.969432, 0, -0.969432, 0.245358, 0, 53.4186, 0)
+
+[node name="Admin_cam" parent="." instance=ExtResource("5_avrvp")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.943025, -0.332721, 0, 0.332721, 0.943025, 0, 20.9994, -46.628)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 unique_name_in_owner = true
@@ -73,3 +73,5 @@ unique_name_in_owner = true
 [connection signal="scored" from="goalBoxes/goal2" to="." method="_on_goal_2_scored"]
 [connection signal="finished" from="goalSound" to="." method="_on_goalSound_finished"]
 [connection signal="finished" from="bgm" to="." method="_on_bgm_finished"]
+
+[editable path="Admin_cam"]
